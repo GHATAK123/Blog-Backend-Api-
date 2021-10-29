@@ -38,6 +38,16 @@ router.post("/",(req,res)=>{
        })
 });
 
+router.get('/',async (req,res)=>{
+     try {
+       const blogs = await Blog.find();
+       res.json(blogs);
+     } catch(err) {
+       res.json({message:err})
+     }
+});
+
+
 router.delete("/:blogId", async (req,res)=>{
   try{
     const deleteBlog = await Blog.remove({_id:req.params.blogId});
