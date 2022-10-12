@@ -68,4 +68,15 @@ router.patch("/:blogId",async (req,res)=>{
       res.json({message:err})
     }
 })
+
+router.put("/:blogId",async (req,res)=>{
+  try{
+   const updatedBlog = await Blog.updateOne({_id:req.params.blogId},{$set:{topic:req.body.topic,description:req.body.description,posted_at:req.body.posted_at,posted_by:req.body.posted_by}});
+   res.json(updatedBlog);
+
+  } catch(err) {
+    res.json({message:err})
+  }
+})
+
 module.exports = router;
